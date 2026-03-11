@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product List</title>
+</head>
+
+<body>
+
+<h2>Inventory Product List</h2>
+
+<form th:action="@{/products/search}" method="get">
+    <input type="text" name="keyword" placeholder="Search product">
+    <button type="submit">Search</button>
+</form>
+
+<br><br>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Store</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.category}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.store.name}"></td>
+        <td>
+            <a th:href="@{/products/add-stock/{id}(id=${product.id})}">
+                Add Stock
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/products/{id}(id=${product.id})}">Delete</a>
+        </td>
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+</html>

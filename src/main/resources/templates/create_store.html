@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Store</title>
+</head>
+
+<body>
+
+<h2>Add Store</h2>
+
+<form th:action="@{/stores}" th:object="${store}" method="post">
+
+    Name:
+    <input type="text" th:field="*{name}" />
+    <br><br>
+
+    Location:
+    <input type="text" th:field="*{location}" />
+    <br><br>
+
+    Manager:
+    <input type="text" th:field="*{manager}" />
+    <br><br>
+
+    <button type="submit">Save Store</button>
+
+</form>
+
+</body>
+</html>

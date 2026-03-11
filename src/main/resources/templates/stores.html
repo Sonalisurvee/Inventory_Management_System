@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stores</title>
+</head>
+
+<body>
+
+<h2>Store List</h2>
+
+<a href="/stores/new">Add Store</a>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Manager</th>
+    </tr>
+
+    <tr th:each="store : ${stores}">
+
+        <td th:text="${store.id}"></td>
+        <td th:text="${store.name}"></td>
+        <td th:text="${store.location}"></td>
+        <td th:text="${store.manager}"></td>
+        <td>
+            <a th:href="@{/stores/edit/{id}(id=${store.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/stores/delete/{id}(id=${store.id})}">Delete</a>
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>

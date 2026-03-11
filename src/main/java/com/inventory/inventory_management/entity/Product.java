@@ -1,6 +1,8 @@
 package com.inventory.inventory_management.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "products")
@@ -17,6 +19,11 @@ public class Product {
     private int quantity;
 
     private double price;
+
+    // NEW: Store relationship
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     // Default Constructor
     public Product() {
@@ -66,5 +73,15 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    // NEW Getter
+    public Store getStore() {
+        return store;
+    }
+
+    // NEW Setter
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

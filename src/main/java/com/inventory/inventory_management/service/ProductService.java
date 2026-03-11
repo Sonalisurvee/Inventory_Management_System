@@ -20,6 +20,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getLowStockProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .filter(product -> product.getQuantity() < 5)
+                .toList();
+    }
+
     // Save product
     public Product saveProduct(Product product) {
         return productRepository.save(product);
@@ -31,7 +38,22 @@ public class ProductService {
     }
 
     // Delete product
-    public void deleteProduct(Long id) {
+    public void deleteProductById(Long id) {
         productRepository.deleteById(id);
     }
+
+    public List<Product> searchProducts(String keyword) {
+        return productRepository.findByNameContainingIgnoreCase(keyword);
+    }
+
+    public void addStock(Long id, int quantity) {
+
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product != null) {
+            product.setQuantity(product.getQuantity() + quantity);
+            productRepository.save(product);
+        }
+    }
+
 }

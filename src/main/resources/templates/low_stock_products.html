@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Low Stock Products</title>
+</head>
+
+<body>
+
+<h2>Low Stock Products</h2>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Store</th>
+        <th>Status</th>
+    </tr>
+
+    <tr th:each="product : ${products}">
+
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.category}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td th:text="${product.store.name}"></td>
+
+        <td style="color:red;">LOW STOCK</td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>

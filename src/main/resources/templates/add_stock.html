@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Stock</title>
+</head>
+
+<body>
+
+<h2>Add Stock</h2>
+
+<p>Product: <span th:text="${product.name}"></span></p>
+
+<p>Current Quantity: <span th:text="${product.quantity}"></span></p>
+
+<form th:action="@{/products/add-stock/{id}(id=${product.id})}" method="post">
+
+    <label>Add Quantity:</label>
+
+    <input type="number" name="quantity" required>
+
+    <br><br>
+
+    <button type="submit">Update Stock</button>
+
+</form>
+
+</body>
+</html>
