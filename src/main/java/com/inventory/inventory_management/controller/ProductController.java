@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.inventory.inventory_management.service.StoreService;
+import com.inventory.inventory_management.service.CategoryService;
 
 import java.util.List;
 
@@ -14,10 +15,12 @@ public class ProductController {
 
     private final ProductService productService;
     private final StoreService storeService;
+    private final CategoryService categoryService;
 
-    public ProductController(ProductService productService, StoreService storeService) {
+    public ProductController(ProductService productService, StoreService storeService, CategoryService categoryService) {
         this.productService = productService;
         this.storeService = storeService;
+        this.categoryService = categoryService;
     }
 
 
@@ -27,7 +30,7 @@ public class ProductController {
 
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-
+        model.addAttribute("stores", storeService.getAllStores());
         return "products";
     }
 
@@ -36,6 +39,7 @@ public class ProductController {
 
         model.addAttribute("product", new Product());
         model.addAttribute("stores", storeService.getAllStores());
+        model.addAttribute("categories", categoryService.getAllCategories());
 
         return "create_product";
     }
@@ -54,6 +58,9 @@ public class ProductController {
         Product product = productService.getProductById(id);
 
         model.addAttribute("product", product);
+        model.addAttribute("stores", storeService.getAllStores());
+        model.addAttribute("categories", categoryService.getAllCategories());
+
 
         return "edit_product";
     }
@@ -73,7 +80,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
 
         productService.deleteProductById(id);
@@ -113,6 +120,15 @@ public class ProductController {
         productService.addStock(id, quantity);
 
         return "redirect:/products";
+    }
+
+    @GetMapping("/products/store/{storeId}")
+    public String getProductsByStore(@PathVariable Long storeId, Model model) {
+
+        model.addAttribute("products", productService.getProductsByStore(storeId));
+        model.addAttribute("stores", storeService.getAllStores());
+
+        return "products";
     }
 
 

@@ -6,6 +6,15 @@
 
 <body>
 
+<div>
+    <a href="/">Dashboard</a> |
+    <a href="/stores">Stores</a> |
+    <a href="/products">Products</a> |
+    <a href="/products/low-stock">Low Stock</a>
+</div>
+
+<hr>
+
 <h2>Add Store</h2>
 
 <form th:action="@{/stores}" th:object="${store}" method="post">

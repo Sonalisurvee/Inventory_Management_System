@@ -56,4 +56,19 @@ public class ProductService {
         }
     }
 
+    public long getTotalProducts() {
+        return productRepository.count();
+    }
+
+    public long getLowStockCount() {
+        return productRepository.findAll()
+                .stream()
+                .filter(product -> product.getQuantity() < 5)
+                .count();
+    }
+
+    public List<Product> getProductsByStore(Long storeId) {
+        return productRepository.findByStoreId(storeId);
+    }
+
 }

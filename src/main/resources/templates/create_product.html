@@ -7,6 +7,15 @@
 
 <body>
 
+<div>
+    <a href="/">Dashboard</a> |
+    <a href="/stores">Stores</a> |
+    <a href="/products">Products</a> |
+    <a href="/categories">Category</a> |
+    <a href="/products/low-stock">Low Stock</a>
+</div>
+
+<hr>
 <h2>Add New Product</h2>
 
 <form th:action="@{/products}" th:object="${product}" method="post">
@@ -15,9 +24,18 @@
     <input type="text" th:field="*{name}" required>
     <br><br>
 
-    <label>Category:</label>
-    <input type="text" th:field="*{category}" required>
-    <br><br>
+    <label>Category</label>
+
+    <select th:field="*{category.categoryId}">
+
+        <option value="">Select Category</option>
+
+        <option th:each="cat : ${categories}"
+                th:value="${cat.categoryId}"
+                th:text="${cat.categoryName}">
+        </option>
+
+    </select>
 
     <label>Quantity:</label>
     <input type="number" th:field="*{quantity}" required>

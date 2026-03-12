@@ -34,4 +34,10 @@ public class StoreService {
     public void deleteStoreById(Long id) {
         storeRepository.deleteById(id);
     }
+
+    public long getTotalStores() {
+        return storeRepository.count();
+    }
+
+
 }

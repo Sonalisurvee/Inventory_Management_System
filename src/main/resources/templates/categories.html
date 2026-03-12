@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Categories</title>
+</head>
+<body>
+
+<div>
+    <a href="/">Dashboard</a> |
+    <a href="/stores">Stores</a> |
+    <a href="/products">Products</a> |
+    <a href="/categories">Category</a> |
+    <a href="/products/low-stock">Low Stock</a>
+
+</div>
+
+<h2>Category List</h2>
+
+<a href="/create-category">Add Category</a>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="cat : ${categories}">
+        <td th:text="${cat.categoryId}"></td>
+        <td th:text="${cat.categoryName}"></td>
+        <td th:text="${cat.description}"></td>
+        <td>
+            <a th:href="@{/delete-category/{id}(id=${cat.categoryId})}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>

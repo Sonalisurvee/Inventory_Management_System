@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Inventory Dashboard</title>
+</head>
+
+<body>
+<div>
+    <a href="/">Dashboard</a> |
+    <a href="/stores">Stores</a> |
+    <a href="/products">Products</a> |
+    <a href="/categories">Category</a> |
+    <a href="/products/low-stock">Low Stock</a>
+</div>
+<hr>
+<h2>System Overview</h2>
+
+<ul>
+    <li>Total Stores: <span th:text="${totalStores}"></span></li>
+    <li>Total Products: <span th:text="${totalProducts}"></span></li>
+    <li>Low Stock Products: <span th:text="${lowStock}"></span></li>
+</ul>
+
+
+<a href="/stores">Manage Stores</a>
+<br>
+<a href="/products">Manage Products</a>
+<br>
+<a href="/products/low-stock">Low Stock Products</a>
+
+</body>
+
+</html>

@@ -14,8 +14,6 @@ public class Product {
 
     private String name;
 
-    private String category;
-
     private int quantity;
 
     private double price;
@@ -25,16 +23,12 @@ public class Product {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     // Default Constructor
     public Product() {
-    }
-
-    // Parameterized Constructor
-    public Product(String name, String category, int quantity, double price) {
-        this.name = name;
-        this.category = category;
-        this.quantity = quantity;
-        this.price = price;
     }
 
     // Getters and Setters
@@ -49,14 +43,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public int getQuantity() {
@@ -83,5 +69,13 @@ public class Product {
     // NEW Setter
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
